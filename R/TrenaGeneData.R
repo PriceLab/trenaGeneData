@@ -8,18 +8,21 @@
 #' @exportClass TrenaGeneData
 
 .TrenaGeneData <- setClass ("TrenaGeneData",
-                     slots = c(mtx.assay="matrix",
-                               geneSymbol="character",
+                     slots = c(geneSymbol="character",
+                               genomeName="character",
                                footprintDatabaseNames="character",
+                               expressionDatasetDirectory="character",
                                expressionDatasetNames="character")
                      )
 
 #----------------------------------------------------------------------------------------------------
 printf <- function(...) print(noquote(sprintf(...)))
 #----------------------------------------------------------------------------------------------------
-setGeneric("getGeneSymbol",                signature="obj", function(obj) standardGeneric ("getGeneSymbol"))
-setGeneric("getFootprintDatabaseNames",    signature="obj", function(obj) standardGeneric ("getFootprintDatabaseNames"))
-setGeneric("getExpressionDatasetNames",    signature="obj", function(obj) standardGeneric ("getExpressionDatasetNames"))
+setGeneric("getGeneSymbol",                 signature="obj", function(obj) standardGeneric ("getGeneSymbol"))
+setGeneric("getGenomeName",                 signature="obj", function(obj) standardGeneric ("getGenomeName"))
+setGeneric("getFootprintDatabaseNames",     signature="obj", function(obj) standardGeneric ("getFootprintDatabaseNames"))
+setGeneric("getExpressionDatasetDirectory", signature="obj", function(obj) standardGeneric ("getExpressionDatasetDirectory"))
+setGeneric("getExpressionDatasetNames",     signature="obj", function(obj) standardGeneric ("getExpressionDatasetNames"))
 #----------------------------------------------------------------------------------------------------
 #' Define an object of class TrenaGeneData
 #'
@@ -38,13 +41,17 @@ setGeneric("getExpressionDatasetNames",    signature="obj", function(obj) standa
 #'
 
 TrenaGeneData <- function(geneSymbol,
+                          genomeName,
                           footprintDatabaseNames=NA_character_,
+                          expressionDatasetDirectory=NA_character_,
                           expressionDatasetNames=NA_character_)
 
 {
-    .TrenaGeneData(geneSymbol=geneSymbol,
-                   footprintDatabaseNames=footprintDatabaseNames,
-                   expressionDatasetNames=expressionDatasetNames)
+   .TrenaGeneData(geneSymbol=geneSymbol,
+                  genomeName=genomeName,
+                  footprintDatabaseNames=footprintDatabaseNames,
+                  expressionDatasetDirectory=expressionDatasetDirectory,
+                  expressionDatasetNames=expressionDatasetNames)
 
 } # TrenaGeneData, the constructor
 #----------------------------------------------------------------------------------------------------
@@ -62,6 +69,23 @@ setMethod(getGeneSymbol, "TrenaGeneData",
 
       function(obj){
          obj@geneSymbol
+         })
+
+#----------------------------------------------------------------------------------------------------
+#' for instance, hg38
+#'
+#' @rdname getGenomeName
+#'
+#' @param obj a TrenaGeneData (or subclass) object
+#'
+#' @return character, the standard code for the genome build for the data offered here
+#'
+#' @export
+#'
+setMethod(getGenomeName, "TrenaGeneData",
+
+      function(obj){
+         obj@genomeName
          })
 
 #----------------------------------------------------------------------------------------------------
@@ -96,6 +120,23 @@ setMethod(getExpressionDatasetNames, "TrenaGeneData",
 
       function(obj){
          sub(".RData", "", obj@expressionDatasetNames, fixed=TRUE)
+         })
+
+#----------------------------------------------------------------------------------------------------
+#' local directory where expression data RData files are foudn
+#'
+#' @rdname getExpressionDatasetDirectory
+#'
+#' @param obj a TrenaGeneData (or subclass) object
+#'
+#' @return character vector, the full path to the direcotyr
+#'
+#' @export
+#'
+setMethod(getExpressionDatasetDirectory, "TrenaGeneData",
+
+      function(obj){
+         sub(".RData", "", obj@expressionDatasetDirectory, fixed=TRUE)
          })
 
 #----------------------------------------------------------------------------------------------------

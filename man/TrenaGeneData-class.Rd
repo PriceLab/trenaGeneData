@@ -7,7 +7,9 @@
 \alias{TrenaGeneData}
 \title{Define an object of class TrenaGeneData}
 \usage{
-TrenaGeneData(geneSymbol, footprintDatabaseNames = NA_character_,
+TrenaGeneData(geneSymbol, genomeName,
+  footprintDatabaseNames = NA_character_,
+  expressionDatasetDirectory = NA_character_,
   expressionDatasetNames = NA_character_)
 }
 \arguments{

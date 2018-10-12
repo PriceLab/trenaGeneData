@@ -2,7 +2,9 @@
 
 export(TrenaGeneData)
 exportClasses(TrenaGeneData)
+exportMethods(getExpressionDatasetDirectory)
 exportMethods(getExpressionDatasetNames)
 exportMethods(getFootprintDatabaseNames)
 exportMethods(getGeneSymbol)
+exportMethods(getGenomeName)
 import(methods)
