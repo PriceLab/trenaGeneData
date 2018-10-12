@@ -1,0 +1,12 @@
+Package: TrenaGeneData
+Title:  Abstract base class for tissue and/or experiment-specific trena single gene models
+Date: 2018-10-12
+Version: 0.99.0
+Authors@R: person("Paul", "Shannon", email = "pshannon@systemsbiology.org", role = c("aut", "cre"))
+Description: Provides the basic structure of data collections to make trena single-gene models
+   several normalization schemes.
+Depends: R (>= 3.5.1)
+License: Apache 2.0
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.0
