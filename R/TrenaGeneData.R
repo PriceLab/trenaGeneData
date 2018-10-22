@@ -12,7 +12,8 @@
                                genomeName="character",
                                footprintDatabaseNames="character",
                                expressionDatasetDirectory="character",
-                               expressionDatasetNames="character")
+                               expressionDatasetNames="character",
+                               variantDatasetNames="character")
                      )
 
 #----------------------------------------------------------------------------------------------------
@@ -23,6 +24,7 @@ setGeneric("getGenomeName",                 signature="obj", function(obj) stand
 setGeneric("getFootprintDatabaseNames",     signature="obj", function(obj) standardGeneric ("getFootprintDatabaseNames"))
 setGeneric("getExpressionDatasetDirectory", signature="obj", function(obj) standardGeneric ("getExpressionDatasetDirectory"))
 setGeneric("getExpressionDatasetNames",     signature="obj", function(obj) standardGeneric ("getExpressionDatasetNames"))
+setGeneric("getVariantDatasetNames",        signature="obj", function(obj) standardGeneric ("getDatasetVariantNames"))
 #----------------------------------------------------------------------------------------------------
 #' Define an object of class TrenaGeneData
 #'
@@ -44,14 +46,17 @@ TrenaGeneData <- function(geneSymbol,
                           genomeName,
                           footprintDatabaseNames=NA_character_,
                           expressionDatasetDirectory=NA_character_,
-                          expressionDatasetNames=NA_character_)
+                          expressionDatasetNames=NA_character_,
+                          variantDatasetNames=NA_character_)
 
 {
    .TrenaGeneData(geneSymbol=geneSymbol,
                   genomeName=genomeName,
                   footprintDatabaseNames=footprintDatabaseNames,
                   expressionDatasetDirectory=expressionDatasetDirectory,
-                  expressionDatasetNames=expressionDatasetNames)
+                  expressionDatasetNames=expressionDatasetNames,
+                  variantDatasetNames=variantDatasetNames
+                  )
 
 } # TrenaGeneData, the constructor
 #----------------------------------------------------------------------------------------------------
@@ -137,6 +142,23 @@ setMethod(getExpressionDatasetDirectory, "TrenaGeneData",
 
       function(obj){
          sub(".RData", "", obj@expressionDatasetDirectory, fixed=TRUE)
+         })
+
+#----------------------------------------------------------------------------------------------------
+#' one or more descriptive filenames, .RData suffix stripped off
+#'
+#' @rdname getVariantDatasetNames
+#'
+#' @param obj a TrenaGeneData (or subclass) object
+#'
+#' @return character vector, a list of one or more variant data set naemes
+#'
+#' @export
+#'
+setMethod(getVariantDatasetNames, "TrenaGeneData",
+
+      function(obj){
+         sub(".RData", "", obj@variantDatasetNames, fixed=TRUE)
          })
 
 #----------------------------------------------------------------------------------------------------

@@ -10,7 +10,8 @@
 TrenaGeneData(geneSymbol, genomeName,
   footprintDatabaseNames = NA_character_,
   expressionDatasetDirectory = NA_character_,
-  expressionDatasetNames = NA_character_)
+  expressionDatasetNames = NA_character_,
+  variantDatasetNames = NA_character_)
 }
 \arguments{
 \item{geneSymbol}{character, the HUGO gene name}

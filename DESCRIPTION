@@ -1,7 +1,7 @@
 Package: TrenaGeneData
 Title:  Abstract base class for tissue and/or experiment-specific trena single gene models
-Date: 2018-10-12
-Version: 0.99.1
+Date: 2018-10-22
+Version: 0.99.3
 Authors@R: person("Paul", "Shannon", email = "pshannon@systemsbiology.org", role = c("aut", "cre"))
 Description: Provides the basic structure of data collections to make trena single-gene models
    several normalization schemes.
